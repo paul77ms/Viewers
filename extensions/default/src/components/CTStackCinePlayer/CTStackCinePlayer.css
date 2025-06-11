@@ -1,0 +1,403 @@
+.ct-stack-cine-player-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.ct-stack-cine-player-container {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 16px;
+  padding: 16px;
+  width: 95%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+.ct-stack-cine-player-container:hover {
+  transform: scale(1.02);
+}
+
+.ct-stack-cine-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-stack-cine-player-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ct-stack-cine-player-close {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ct-stack-cine-player-close:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: scale(1.1);
+}
+
+.ct-stack-cine-player-viewer {
+  position: relative;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f172a;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-stack-cine-player-image {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(45deg, #0f172a 25%, #1e293b 25%, #1e293b 50%, #0f172a 50%, #0f172a 75%, #1e293b 75%);
+  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ct-stack-cine-player-image-placeholder {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.ct-stack-cine-player-loading {
+  color: #3b82f6;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.ct-stack-cine-player-dicom-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #000000;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.ct-stack-cine-player-image-id {
+  margin-top: 8px;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  word-break: break-all;
+}
+
+.ct-stack-cine-player-image-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 13px;
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 8px;
+}
+
+.ct-stack-cine-player-controls {
+  space-y: 16px;
+}
+
+.ct-stack-cine-player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e2e8f0;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-stack-cine-player-frame-rate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e2e8f0;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-stack-cine-player-frame-rate label {
+  font-weight: 500;
+  min-width: 40px;
+}
+
+.ct-stack-cine-player-frame-rate input[type="range"] {
+  flex: 1;
+  height: 6px;
+  background: #475569;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ct-stack-cine-player-frame-rate input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ct-stack-cine-player-frame-rate input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ct-stack-cine-player-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e2e8f0;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.ct-stack-cine-player-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #475569;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ct-stack-cine-player-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.ct-stack-cine-player-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.ct-stack-cine-player-instructions {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-stack-cine-player-instructions p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+  font-style: italic;
+}
+
+.ct-stack-cine-player-error {
+  color: #ef4444;
+  text-align: center;
+  font-size: 16px;
+  padding: 40px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.ct-stack-cine-player-overlay {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 모달 컨테이너 스타일 */
+.ct-stack-cine-modal-container {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ct-stack-cine-modal-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* 대형 화면 최적화 */
+@media (min-width: 1200px) {
+  .ct-stack-cine-player-container {
+    width: 90%;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 640px) {
+  .ct-stack-cine-player-container {
+    width: 95%;
+    padding: 16px;
+    margin: 20px;
+  }
+  
+  .ct-stack-cine-player-title {
+    font-size: 18px;
+  }
+  
+  .ct-stack-cine-player-image {
+    height: 300px;
+  }
+  
+  .ct-stack-cine-player-info,
+  .ct-stack-cine-player-frame-rate {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .ct-stack-cine-player-frame-rate {
+    align-items: stretch;
+  }
+  
+  .ct-stack-cine-player-image-info {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+/* 리사이즈 핸들 스타일 */
+.resize-handle {
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.resize-handle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.resize-handle-bottom-right:hover {
+  background: linear-gradient(135deg, transparent 45%, rgba(59, 130, 246, 0.8) 55%) !important;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.resize-handle-right:hover,
+.resize-handle-bottom:hover {
+  background: rgba(59, 130, 246, 0.6) !important;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+/* 리사이즈 중일 때 전체 오버레이에 적용할 스타일 */
+.ct-stack-cine-player-overlay.resizing {
+  cursor: nw-resize !important;
+  user-select: none;
+}
+
+.ct-stack-cine-player-overlay.resizing * {
+  pointer-events: none;
+}
+
+.ct-stack-cine-player-overlay.resizing .resize-handle {
+  pointer-events: auto;
+}
+
+/* 컨테이너 호버 시 리사이즈 핸들 표시 */
+.ct-stack-cine-player-container:hover .resize-handle {
+  opacity: 1;
+}
+
+/* 리사이즈 표시 텍스트 */
+.resize-info {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #3b82f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: monospace;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  z-index: 20;
+} 

@@ -34,6 +34,16 @@ export default {
         });
       },
     },
+    {
+      id: 'ctStackCinePlayer',
+      label: '스택 영화 재생',
+      iconName: 'tool-cine',
+      onClick: ({ commandsManager, displaySetInstanceUID }: withAppTypes) => {
+        commandsManager.runCommand('openCTStackCinePlayer', {
+          displaySetInstanceUID,
+        });
+      },
+    },
   ],
   'studyBrowser.sortFunctions': [
     {

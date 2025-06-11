@@ -24,6 +24,7 @@ import { useViewportsByPositionStore } from './stores/useViewportsByPositionStor
 import { useToggleOneUpViewportGridStore } from './stores/useToggleOneUpViewportGridStore';
 import requestDisplaySetCreationForStudy from './Panels/requestDisplaySetCreationForStudy';
 import promptSaveReport from './utils/promptSaveReport';
+import CTStackCinePlayer from './components/CTStackCinePlayer';
 
 export type HangingProtocolParams = {
   protocolId?: string;
@@ -657,6 +658,43 @@ const commandsModule = ({
       });
     },
 
+    openCTStackCinePlayer({ displaySetInstanceUID }: { displaySetInstanceUID: string }) {
+      const displaySet = displaySetService.getDisplaySetByUID(displaySetInstanceUID);
+      
+      if (!displaySet) {
+        console.warn('Display set not found for CT Stack Cine Player:', displaySetInstanceUID);
+        return;
+      }
+
+      // Check if the display set has images (support all image modalities)
+      if (!displaySet.imageIds || displaySet.imageIds.length === 0) {
+        uiNotificationService.show({
+          title: '스택 영화 재생',
+          message: '재생할 이미지가 없습니다.',
+          type: 'warning',
+          duration: 3000,
+        });
+        return;
+      }
+
+      const { UIModalService } = servicesManager.services;
+
+      UIModalService.show({
+        content: CTStackCinePlayer,
+        contentProps: {
+          displaySet,
+          servicesManager,
+          onClose: () => UIModalService.hide(),
+        },
+        title: '',
+        isMinimizable: false,
+        isDraggable: false,
+        showHeader: false,
+        containerClassName: 'ct-stack-cine-modal-container',
+        contentClassName: 'ct-stack-cine-modal-content',
+      });
+    },
+
     /**
      * Toggle viewport overlay (the information panel shown on the four corners
      * of the viewport)
@@ -779,6 +817,7 @@ const commandsModule = ({
     setViewportGridLayout: actions.setViewportGridLayout,
     toggleOneUp: actions.toggleOneUp,
     openDICOMTagViewer: actions.openDICOMTagViewer,
+    openCTStackCinePlayer: actions.openCTStackCinePlayer,
     updateViewportDisplaySet: actions.updateViewportDisplaySet,
     scrollActiveThumbnailIntoView: actions.scrollActiveThumbnailIntoView,
     addDisplaySetAsLayer: actions.addDisplaySetAsLayer,

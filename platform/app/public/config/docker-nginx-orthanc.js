@@ -1,5 +1,6 @@
 /** @type {AppTypes.Config} */
 window.config = {
+  useSharedArrayBuffer: false,
   routerBasename: null,
   showStudyList: true,
   extensions: [],
