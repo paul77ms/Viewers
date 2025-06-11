@@ -290,7 +290,7 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
           className="ct-stack-cine-player-container"
         >
           <div className="ct-stack-cine-player-error">
-            재생할 이미지를 찾을 수 없습니다.
+            No images available for playback.
           </div>
         </div>
       </div>
@@ -318,12 +318,6 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
         }}
         onClick={!isResizing ? togglePlayPause : undefined}
       >
-        {/* 리사이즈 정보 표시 */}
-        {isResizing && (
-          <div className="resize-info">
-            크기: {containerSize.width} × {containerSize.height}
-          </div>
-        )}
 
         {/* 리사이즈 핸들들 */}
         <div
@@ -428,32 +422,17 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
 
         <div className="ct-stack-cine-player-header">
           <h3 className="ct-stack-cine-player-title">
-            스택 영화 재생 - {displaySet.SeriesDescription || displaySet.Modality || 'Unknown Series'}
+            {displaySet.SeriesDescription || displaySet.Modality || 'Unknown Series'}
           </h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-              {containerSize.width} × {containerSize.height}
-            </span>
+
             <button 
-              style={{
-                background: 'rgba(59, 130, 246, 0.2)',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                color: '#3b82f6',
-                width: '32px',
-                height: '32px',
-                borderRadius: '6px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s ease'
-              }}
+              className="ct-stack-cine-player-fullscreen"
               onClick={(e) => {
                 e.stopPropagation();
                 toggleFullscreen();
               }}
-              title={isFullscreen ? "일반 크기로" : "전체 화면으로"}
+              title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
             >
               {isFullscreen ? "⤓" : "⤢"}
             </button>
@@ -509,7 +488,7 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
                 </div>
                 
                 <div style={{ fontSize: '18px', marginBottom: '10px', color: '#e0e0e0' }}>
-                  {isCurrentImageLoading ? `로딩 중... ${imageNumber} / ${totalImages}` : `이미지 ${imageNumber} / ${totalImages}`}
+                  {isCurrentImageLoading ? `Loading... ${imageNumber} / ${totalImages}` : `Image ${imageNumber} / ${totalImages}`}
                 </div>
                 
                 <div style={{ 
@@ -530,8 +509,8 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
                   fontSize: '14px',
                   color: '#bbb'
                 }}>
-                  <span>모달리티: {displaySet.Modality || 'N/A'}</span>
-                  <span>시리즈: #{displaySet.SeriesNumber || 'N/A'}</span>
+                  <span>Modality: {displaySet.Modality || 'N/A'}</span>
+                  <span>Series: #{displaySet.SeriesNumber || 'N/A'}</span>
                 </div>
                 
                 {(isPlaying || isCurrentImageLoading) && (
@@ -541,7 +520,7 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
                     color: '#4a9eff',
                     animation: 'pulse 1s infinite'
                   }}>
-                    {isCurrentImageLoading ? '이미지 로딩 중...' : `재생 중... (${frameRate} fps)`}
+                    {isCurrentImageLoading ? 'Loading image...' : `Playing... (${frameRate} fps)`}
                   </div>
                 )}
               </div>
@@ -551,13 +530,13 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
         
         <div className="ct-stack-cine-player-controls">
           <div className="ct-stack-cine-player-info">
-            <span>프레임 레이트: {frameRate} fps</span>
-            <span>{isPlaying ? '재생 중' : '일시정지'}</span>
-            <span>로드됨: {loadedImages.size}/{totalImages}</span>
+            <span>Frame Rate: {frameRate} fps</span>
+            <span>{isPlaying ? 'Playing' : 'Paused'}</span>
+            <span>Loaded: {loadedImages.size}/{totalImages}</span>
           </div>
           
           <div className="ct-stack-cine-player-frame-rate">
-            <label>속도: </label>
+            <label>Speed: </label>
             <input
               type="range"
               min="1"
@@ -580,14 +559,14 @@ const CTStackCinePlayer: React.FC<CTStackCinePlayerProps> = ({
           </div>
           
           <div className="ct-stack-cine-player-image-info">
-            <span>환자 ID: {(displaySet as any).PatientID || 'N/A'}</span>
-            <span>연구일: {(displaySet as any).StudyDate || 'N/A'}</span>
-            <span>상태: {isCurrentImageLoaded ? '렌더링 완료' : isCurrentImageLoading ? '로딩 중...' : '대기 중'}</span>
+            <span>Patient ID: {(displaySet as any).PatientID || 'N/A'}</span>
+            <span>Study Date: {(displaySet as any).StudyDate || 'N/A'}</span>
+            <span>Status: {isCurrentImageLoaded ? 'Rendering Complete' : isCurrentImageLoading ? 'Loading...' : 'Waiting'}</span>
           </div>
         </div>
         
         <div className="ct-stack-cine-player-instructions">
-          <span>클릭하여 재생/일시정지 • 외부 클릭으로 종료 • 실제 DICOM 이미지 렌더링</span>
+          <span>Click to Play/Pause • Click Outside to Close • Real-time DICOM Image Rendering</span>
         </div>
       </div>
     </div>

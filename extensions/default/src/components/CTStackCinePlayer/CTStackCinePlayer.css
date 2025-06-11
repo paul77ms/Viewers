@@ -45,25 +45,52 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.ct-stack-cine-player-fullscreen {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  color: #3b82f6 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  margin-right: 8px !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+}
+
+.ct-stack-cine-player-fullscreen:hover {
+  background: rgba(59, 130, 246, 0.2) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
+}
+
 .ct-stack-cine-player-close {
-  background: rgba(239, 68, 68, 0.2);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #ef4444;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  color: #ef4444 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  font-size: 24px !important;
+  font-weight: normal !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+  padding: 0 !important;
 }
 
 .ct-stack-cine-player-close:hover {
-  background: rgba(239, 68, 68, 0.3);
-  transform: scale(1.1);
+  background: rgba(239, 68, 68, 0.2) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2) !important;
 }
 
 .ct-stack-cine-player-viewer {
@@ -387,17 +414,7 @@
   opacity: 1;
 }
 
-/* 리사이즈 표시 텍스트 */
+/* 리사이즈 표시 텍스트 제거 */
 .resize-info {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #3b82f6;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-family: monospace;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  z-index: 20;
+  display: none !important;
 } 
